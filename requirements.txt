@@ -1,0 +1,25 @@
+# readline is absent from some Python builds (e.g. Parrot/Debian minimal).
+# gnureadline provides a drop-in ``import readline`` shim so impacket scripts
+# (GetUserSPNs.py, secretsdump.py, etc.) work correctly inside the venv.
+gnureadline>=8.0
+PyYAML>=6.0
+rich>=13.7.0
+questionary>=2.0.1
+psutil>=5.9.0
+scapy>=2.5.0
+dnspython>=2.4.0
+impacket>=0.11.0
+ldap3>=2.9.1
+python-nmap>=0.7.1
+netifaces>=0.11.0
+pycryptodome>=3.19.0
+
+# NB: NetExec (CLI binary ``nxc``) drives Phase 1b authenticated enumeration
+# and Phase 3 spraying, but it is NOT published on PyPI - install it from the
+# distro (``apt install netexec`` on Kali) or via
+# ``pipx install git+https://github.com/Pennyw0rth/NetExec.git``
+# netexec>=1.3.0
+
+# NB: the ASREProast / Kerberoast / secretsdump wrappers (Phase 3) rely on the
+# Impacket scripts (GetNPUsers.py, GetUserSPNs.py, secretsdump.py) shipped by
+# the ``impacket`` package above; no separate pip dependency is required.

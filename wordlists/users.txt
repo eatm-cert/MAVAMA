@@ -1,0 +1,84 @@
+# Minimal AD user wordlist.
+# Replace with a larger file (SecLists/Usernames/xato-net-*) for engagements.
+
+# --- Built-in / generic ---
+administrator
+admin
+administrateur
+guest
+invite
+krbtgt
+backup
+test
+user
+users
+operator
+helpdesk
+support
+service
+svc
+svc_admin
+svc_sql
+svc_mssql
+svc_exchange
+svc_sccm
+svc_iis
+svc_web
+svc_ftp
+svc_backup
+svc_vmware
+sqladmin
+sqlservice
+exchange
+smtp
+webmaster
+developer
+dev
+dba
+ops
+devops
+jenkins
+gitlab
+ansible
+vmware
+domain_admin
+domainadmin
+enterpriseadmin
+
+# --- GOAD / GOAD-Mini (sevenkingdoms.local + north.sevenkingdoms.local) ---
+# Stark family
+eddard.stark
+catelyn.stark
+robb.stark
+sansa.stark
+arya.stark
+brandon.stark
+rickon.stark
+jon.snow
+benjen.stark
+rickard.stark
+# Bannermen / Night's Watch
+hodor
+samwell.tarly
+jeor.mormont
+brynden.rivers
+# Targaryen / Essos (essos.local)
+daenerys.targaryen
+viserys.targaryen
+khal.drogo
+jorah.mormont
+missandei
+# Lannister family
+tywin.lannister
+cersei.lannister
+jaime.lannister
+tyrion.lannister
+joffrey.baratheon
+# Baratheons
+robert.baratheon
+stannis.baratheon
+renly.baratheon
+# GOAD-provisioned service accounts
+sql_svc
+svc_bes
+svc_adcs

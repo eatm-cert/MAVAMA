@@ -1,0 +1,44 @@
+# GOAD username wordlist (Game of Thrones characters, firstname.lastname).
+# This is the "OSINT" for the lab: in black box, creds-less user discovery is
+# username guessing validated by Kerberos (no lockout). The recon engine tests
+# this list against every (domain, DC) pair, so all three domains are covered.
+
+# --- Built-in ---
+administrator
+guest
+krbtgt
+
+# --- sevenkingdoms.local (KINGSLANDING) ---
+robert.baratheon
+joffrey.baratheon
+renly.baratheon
+stannis.baratheon
+cersei.lannister
+tywin.lannister
+jaime.lannister
+tyrion.lannister
+petyr.baelish
+lord.varys
+maester.pycelle
+
+# --- north.sevenkingdoms.local (WINTERFELL / CASTELBLACK) ---
+eddard.stark
+catelyn.stark
+robb.stark
+sansa.stark
+arya.stark
+brandon.stark
+rickon.stark
+jon.snow
+samwell.tarly
+jeor.mormont
+sql_svc
+hodor
+
+# --- essos.local (MEEREEN / BRAAVOS) ---
+daenerys.targaryen
+viserys.targaryen
+khal.drogo
+jorah.mormont
+missandei
+grey.worm

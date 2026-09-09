@@ -1,0 +1,59 @@
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+
+# --- Virtual environments / secrets ---------------------------------------
+.venv/
+venv/
+.env
+
+# --- Engagement output (generated at runtime, never commit) ----------------
+logs/
+loot/
+reports/
+loot*
+
+# Loot artefacts that may land outside loot/ as well (Kerberos tickets,
+# relayed certificates, raw dumps). Certipy writes loot_certipy_<CA>.{json,txt}
+# into the working directory.
+*.ccache
+*.kirbi
+*.pfx
+*.ntds
+loot_certipy_*
+
+# Stray absolute symlink (-> /home/kali) accidentally committed once.
+/kali
+
+# --- Generated / effective configuration -----------------------------------
+config/generated/
+.effective.yaml
+*.effective.yaml
+
+# --- Operator-supplied credentials (cleartext passwords / hashes) ----------
+# Never commit these. The template (config/credentials.template.yaml) IS
+# committed so operators know the expected schema. The patterns cover both the
+# documented name (credentials*.yaml) and ad-hoc per-engagement files
+# (creds*.yaml, *creds*.yaml).
+config/credentials.yaml
+config/credentials.*.yaml
+config/creds*.yaml
+config/creds*.yml
+config/*creds*.yaml
+config/*creds*.yml
+!config/credentials.template.yaml
+
+# --- Editors / OS ----------------------------------------------------------
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.cache

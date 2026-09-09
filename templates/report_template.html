@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Mavama - Rapport {{ engagement.name }}</title>
+<style>
+  body { font-family: sans-serif; margin: 2rem; color: #222; }
+  h1, h2, h3 { color: #2a2a5f; }
+  table { border-collapse: collapse; width: 100%; margin-bottom: 1.5rem; }
+  th, td { border: 1px solid #ccc; padding: .4rem .6rem; text-align: left; }
+  th { background: #2a2a5f; color: #fff; }
+  .sev-critical { background: #b00020; color: #fff; }
+  .sev-high     { background: #e05a00; color: #fff; }
+  .sev-medium   { background: #e0b000; }
+  .sev-low      { background: #8ac926; }
+  .sev-info     { background: #d9d9d9; }
+  code { background: #f4f4f4; padding: 0 .3rem; border-radius: 3px; }
+</style>
+</head>
+<body>
+  <h1>Rapport d'audit - {{ engagement.name }}</h1>
+  <p>Opérateur : {{ engagement.operator }} - Début : {{ started_at }}</p>
+  <!-- Sections alimentées par modules/reporting/ (Phase 6). -->
+</body>
+</html>

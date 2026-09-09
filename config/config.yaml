@@ -1,0 +1,102 @@
+# Mavama - Main configuration
+# Loaded by default by main.py (use --config to override).
+
+engagement:
+  name: "default-engagement"
+  operator: "pentester"
+  # Safe mode: enumeration only, no password spraying or credential dumping.
+  safe_mode: false
+  # Execution pacing:
+  #   auto -> run each phase end-to-end without pausing.
+  #   step -> semi-automatic: pause after each step to review results and
+  #           decide whether to continue, skip, or stop (interactive TTY only;
+  #           falls back to auto when no terminal is attached). CLI: --step.
+  execution_mode: "auto"
+
+scope:
+  # CIDR ranges in the pentest scope (e.g. 10.10.10.0/24, 192.168.56.0/24).
+  targets:
+    - "192.168.56.0/24"
+  # Hosts/ranges to exclude explicitly.
+  exclude:
+    - "192.168.56.1"
+
+# Network interface used for the scans (null = auto-detection).
+interface: null
+
+# Known AD domain (null = auto-discovery via DNS/LDAP).
+domain: null
+
+# External tools to remove from this engagement (by key, see
+# utils/tool_preflight.py KNOWN_TOOLS). Removed tools are skipped by the
+# startup availability check. The startup preflight rewrites this list
+# interactively.
+tools:
+  disabled: []
+
+# Pre-supplied credentials (grey box).
+# Path to a YAML file listing credentials already known to the operator.
+# - null (default)             -> black box: no credential, full auto-discovery.
+# - "config/credentials.yaml"  -> grey box: one or more known account(s).
+# Copy config/credentials.template.yaml, fill it in, and point here.
+# Loaded credentials are injected into the engagement state before Phase 1,
+# trigger authenticated reconnaissance (Phase 1b) right after recon, and are
+# consumed by Phase 3 (ASREProast, Kerberoast, spraying).
+credentials_file: null
+
+# Logging options.
+logging:
+  level: "INFO"          # DEBUG, INFO, WARNING, ERROR
+  log_dir: "./logs"
+  loot_dir: "./loot"
+
+# Phase 1 - Reconnaissance.
+recon:
+  # Discovery methods (arp requires root privileges).
+  host_discovery:
+    arp_scan: true
+    ping_sweep: true
+    tcp_ping_ports: [445, 135, 3389]   # Ports probed when ICMP is filtered.
+    timeout: 2
+
+  # Port scan (common AD ports).
+  # 80/443 matter for ADCS Web Enrollment detection and are always scanned
+  # even if removed here.
+  port_scan:
+    ports: [53, 80, 88, 135, 139, 389, 443, 445, 464, 636, 1433, 3268, 3269, 3389, 5985, 5986, 8080, 8443]
+    rate: 1000              # Packets/s (for nmap --min-rate).
+    timeout: 300
+
+  # Anonymous enumeration.
+  anon_enum:
+    smb_null_session: true
+    ldap_anonymous_bind: true
+    rid_bruteforce: true
+    rid_range: [500, 1500]
+
+  # Kerberos user enumeration (kerbrute-like).
+  user_enum:
+    enabled: true
+    userlist: "./wordlists/users.txt"  # null to disable.
+    threads: 10
+
+  # Phase 1b authenticated recon (NetExec). Per-call timeout in seconds; a
+  # fast login probe (min(timeout, 45)s) aborts early on a bad credential or
+  # an unreachable DC. Raise this for slow/remote targets.
+  authed_recon:
+    timeout: 120
+
+# Phase 3 / Phase 6: see documentation.
+reporting:
+  # Auto-generate the HTML report at the end of a phase. Set to false to skip
+  # it; '--phase report' (or --no-report on the CLI) overrides this.
+  enabled: true
+  format: "markdown"        # markdown, html, pdf
+  output_dir: "./reports"
+  # SOC detection-test log: a timestamped, MITRE ATT&CK-tagged CSV of every
+  # test the tool fired (when / source IP / target IP / technique / tool), so a
+  # blue team can ingest it into their SIEM/EDR and verify detections by
+  # correlating on time + IP + technique. A live copy is always streamed to
+  # <loot_dir>/soc_detection_log.csv during the run (survives a crash); this
+  # flag controls the finalized, time-sorted copy dropped into output_dir.
+  soc_log: true

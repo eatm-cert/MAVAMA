@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nmaprun scanner="nmap" args="nmap" start="1700000000" version="7.94" xmloutputversion="1.05">
+<host starttime="1700000000" endtime="1700000001">
+<status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.56.10" addrtype="ipv4"/>
+<hostnames>
+<hostname name="dc01.sevenkingdoms.local" type="PTR"/>
+</hostnames>
+<ports>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="domain" product="Simple DNS Plus" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="88"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="kerberos-sec" product="Microsoft Windows Kerberos" version="" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="msrpc" product="Microsoft Windows RPC" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="netbios-ssn" product="Microsoft Windows netbios-ssn" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" method="probed" conf="10"/>
+<script id="ldap-rootdse" output="&#xa;LDAP Results&#xa;  &lt;ROOT&gt;&#xa;    currentTime: 20260423110000.0Z&#xa;    defaultNamingContext: DC=sevenkingdoms,DC=local&#xa;    dnsHostName: dc01.sevenkingdoms.local&#xa;    rootDomainNamingContext: DC=sevenkingdoms,DC=local&#xa;"/>
+</port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="microsoft-ds" product="Microsoft Windows Server 2019" method="probed" conf="10"/>
+<script id="smb2-security-mode" output="&#xa;  3.1.1: &#xa;    Message signing enabled and required"/>
+<script id="smb-os-discovery" output="&#xa;  OS: Windows Server 2019 Standard 17763&#xa;  Computer name: DC01&#xa;  NetBIOS computer name: DC01\x00&#xa;  Domain name: sevenkingdoms.local&#xa;  Forest name: sevenkingdoms.local&#xa;  FQDN: DC01.sevenkingdoms.local"/>
+</port>
+<port protocol="tcp" portid="464"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="kpasswd5" product="Microsoft Windows" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="ncacn_http" product="Microsoft Windows RPC over HTTP" version="1.0" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="636"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="ldapssl" product="Microsoft Windows Active Directory LDAP" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="3268"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="globalcatLDAP" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="3269"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="globalcatLDAPssl" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="ms-wbt-server" product="Microsoft Terminal Services" method="probed" conf="10"/>
+<script id="rdp-ntlm-info" output="&#xa;  Target_Name: SEVENKINGDOMS&#xa;  NetBIOS_Domain_Name: SEVENKINGDOMS&#xa;  NetBIOS_Computer_Name: DC01&#xa;  DNS_Domain_Name: sevenkingdoms.local&#xa;  DNS_Computer_Name: dc01.sevenkingdoms.local&#xa;  DNS_Tree_Name: sevenkingdoms.local"/>
+</port>
+</ports>
+</host>
+</nmaprun>
